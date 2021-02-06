@@ -1,4 +1,4 @@
-package com.example.pixelapplication;
+package com.example.pexelapplication;
 
 import org.junit.Test;
 
