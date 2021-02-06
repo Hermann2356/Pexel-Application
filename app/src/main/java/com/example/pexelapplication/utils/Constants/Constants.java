@@ -2,7 +2,7 @@ package com.example.pexelapplication.utils.Constants;
 
 public class Constants {
 
-    // Generate API KEY -> https://www.pexels.com/api/documentation/?#photos-curated
+    // Generate API KEY -> https://www.pexels.com/api/documentation/?#authorization
     // ENTER API KEY HERE
     public static final String AUTH = "";
 
