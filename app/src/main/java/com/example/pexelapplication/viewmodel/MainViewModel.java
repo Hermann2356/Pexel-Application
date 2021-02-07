@@ -23,7 +23,9 @@ public class MainViewModel extends ViewModel {
         return _Pexel;
     }
 
-    public void setPexel(String authentication, Map<String, String> queryMap) {
+
+    public void fetchPexel(String authentication, Map<String, String> queryMap) {
+
         new PexelRepository().getPexel(authentication, queryMap).enqueue(new Callback<PexelResponse>() {
             @Override
             public void onResponse(Call<PexelResponse> call, Response<PexelResponse> response) {
