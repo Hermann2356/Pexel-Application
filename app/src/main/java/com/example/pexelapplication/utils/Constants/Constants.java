@@ -4,7 +4,7 @@ public class Constants {
 
     // Generate API KEY -> https://www.pexels.com/api/documentation/?#authorization
     // ENTER API KEY HERE
-    public static final String AUTH = "563492ad6f91700001000001ed1e12d7a0234a0e8801fc22f4a3a903";
+    public static final String AUTH = "";
 
     public static final String QUERY = "query";
     public static final String ORIENTATION = "orientation";
