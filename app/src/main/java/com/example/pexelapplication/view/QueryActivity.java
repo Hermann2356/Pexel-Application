@@ -76,7 +76,7 @@ public class QueryActivity extends AppCompatActivity implements PixelClickListen
 
     private void setLinearLayout() {
         linearLayoutManager = new LinearLayoutManager(binding.rvFavList.getContext());
-        binding.smLayout.setText(Constants.Linear_LAYOUT);
+        binding.smLayout.setText(Constants.LINEAR_LAYOUT);
         binding.rvFavList.setLayoutManager(linearLayoutManager);
     }
 
@@ -92,7 +92,7 @@ public class QueryActivity extends AppCompatActivity implements PixelClickListen
             public void onChanged(Set<Photo> photos) {
                 ArrayList<Photo> list = new ArrayList<>(photos);
                 Collections.reverse(list);
-                PexelAdapter pexelAdapter = new PexelAdapter(list, null);
+                PexelAdapter pexelAdapter = new PexelAdapter(list, QueryActivity.this::itemClicked);
                 binding.rvFavList.setAdapter(pexelAdapter);
             }
         });
@@ -100,7 +100,12 @@ public class QueryActivity extends AppCompatActivity implements PixelClickListen
 
     @Override
     public void itemClicked(Photo photo) {
+        Intent intent = new Intent(QueryActivity.this, DescriptionActivity.class);
+        intent.putExtra(Constants.PHOTOGRAPHER_NAME, photo.getPhotographer());
+        intent.putExtra(Constants.PHOTOGRAPHER_URL, photo.getPhotographerUrl());
+        intent.putExtra(Constants.PHOTO_ORIGINAL_SRC, photo.getSrc().getOriginal());
 
+        startActivity(intent);
     }
 }
 
