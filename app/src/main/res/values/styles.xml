@@ -18,6 +18,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--Components-->
+    <style name="icon" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="android:elevation">2dp</item>
+        <item name="android:inset">0sp</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
 
     <!--Bottom Sheets-->
     <style name="ThemeOverlay.MyTheme.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">

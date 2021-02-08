@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:style="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/search_here"
+        android:lines="1"
+        android:maxLines="1"
+        android:singleLine="true"
+        app:drawableEndCompat="@drawable/search_icon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_photographer_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:text="@string/photographer_name"
+        android:textAppearance="?textAppearanceSubtitle2"
+        android:textStyle="italic"
+        app:drawableLeftCompat="@drawable/camera_icon"
+        app:layout_constraintBottom_toTopOf="@+id/iv_photo"
+        app:layout_constraintLeft_toLeftOf="@id/iv_photo" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_photographer_pexel_site"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingLeft="10dp"
+        android:text="@string/photographer_pexel_url"
+        android:textAppearance="?textAppearanceSubtitle2"
+        android:textStyle="italic"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_photographer_name"
+        app:layout_constraintLeft_toRightOf="@+id/tv_photographer_name"
+        app:layout_constraintRight_toRightOf="@id/iv_photo"
+        app:layout_constraintTop_toTopOf="@id/tv_photographer_name" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_photo"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/purple_700"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_search"
+        app:layout_constraintVertical_bias=".3" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_favorite"
+        style="@style/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:icon="@drawable/favorite_border_icon"
+        app:layout_constraintLeft_toLeftOf="@id/iv_photo"
+        app:layout_constraintTop_toBottomOf="@id/iv_photo" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_share"
+        style="@style/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        app:icon="@drawable/share_icon"
+        app:layout_constraintBottom_toBottomOf="@id/btn_favorite"
+        app:layout_constraintLeft_toRightOf="@+id/btn_favorite"
+        app:layout_constraintTop_toTopOf="@+id/btn_favorite" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_save"
+        style="@style/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/save_add_icon"
+        app:layout_constraintBottom_toBottomOf="@id/btn_share"
+        app:layout_constraintRight_toRightOf="@id/iv_photo"
+        app:layout_constraintTop_toTopOf="@+id/btn_share" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

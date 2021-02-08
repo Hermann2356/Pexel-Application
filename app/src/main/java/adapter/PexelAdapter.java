@@ -88,7 +88,7 @@ public class PexelAdapter extends RecyclerView.Adapter<PexelAdapter.PexelViewHol
         private void setImage(@NotNull Photo photo) {
 
             Glide.with(binding.getRoot())
-                    .load(photo.getSrc().getMedium())
+                    .load(photo.getSrc().getOriginal())
                     .centerCrop()
                     .into(binding.ivPhoto);
         }

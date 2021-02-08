@@ -3,7 +3,6 @@ package com.example.pexelapplication.viewmodel;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -17,7 +16,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class QueryViewModel extends AndroidViewModel {
 
@@ -26,49 +28,49 @@ public class QueryViewModel extends AndroidViewModel {
             getApplication().getString(R.string.preference_file_key), Context.MODE_PRIVATE);
     private SharedPreferences.Editor editor = sharedPref.edit();
 
-    private MutableLiveData<List<Photo>> _favoritePhotos = new MutableLiveData<>();
+    private MutableLiveData<Set<Photo>> _recentPhotos = new MutableLiveData<>();
 
     public QueryViewModel(@NonNull Application application) {
         super(application);
     }
 
-    public LiveData<List<Photo>> getFavoritePhotos() {
-        return _favoritePhotos;
+    public LiveData<Set<Photo>> getRecentPhotos() {
+        return _recentPhotos;
     }
 
-    public void  setFavoritePhotos() {
+    public void retrieveRecentPhoto() {
         String serializedObject = sharedPref.getString(STRING_SET_DATA_KEY, "");
 
         if(serializedObject != null) {
             Gson gson = new Gson();
-            Type type = new TypeToken<List<Photo>>(){}.getType();
-            List<Photo> list = gson.fromJson(serializedObject, type);
+            Type type = new TypeToken<LinkedHashSet<Photo>>(){}.getType();
+            Set<Photo> list = gson.fromJson(serializedObject, type);
 
-            _favoritePhotos.setValue(gson.fromJson(serializedObject, type));
+            _recentPhotos.setValue(gson.fromJson(serializedObject, type));
         }
     }
 
-    public void addToFavorite(Photo photo) {
-        setFavoritePhotos();
+    public void addToRecentPhotos(Photo photo) {
+        retrieveRecentPhoto();
 
-        if(_favoritePhotos.getValue() == null)
-            _favoritePhotos.setValue(new ArrayList<>());
+        if(_recentPhotos.getValue() == null)
+            _recentPhotos.setValue(new HashSet<>());
 
-        List<Photo> temp = getFavoritePhotos().getValue();
+        Set<Photo> temp = getRecentPhotos().getValue();
         temp.add(photo);
-        _favoritePhotos.setValue(temp);
-        String val = _favoritePhotos.getValue().toString();
-        saveToPref(_favoritePhotos.getValue());
-        setFavoritePhotos();
+        _recentPhotos.setValue(temp);
+        String val = _recentPhotos.getValue().toString();
+        saveToPref(_recentPhotos.getValue());
+        retrieveRecentPhoto();
     }
 
-    public void deleteFromFavorite(Photo photo) {
+//    public void deleteFromFavorite(Photo photo) {
 //        String photoJson = convertPhotoToJsonString(photos);
 //        sharedPref.getStringSet(STRING_SET_DATA_KEY, null).remove(photoJson);
 //        _favoritePhotos.getValue().remove(photo);
-    }
+//    }
 
-    private void saveToPref(List<Photo> photos) {
+    private void saveToPref(Set<Photo> photos) {
         Gson gson = new Gson();
         String photosJson = gson.toJson(photos);
         editor.putString(STRING_SET_DATA_KEY, photosJson).apply();

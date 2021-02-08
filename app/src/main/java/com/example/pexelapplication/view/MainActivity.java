@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
 import com.example.pexelapplication.databinding.ActivityMainBinding;
@@ -18,7 +17,6 @@ import com.example.pexelapplication.viewmodel.MainViewModel;
 import com.example.pexelapplication.viewmodel.QueryViewModel;
 
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.Map;
 
 import adapter.PexelAdapter;
@@ -103,6 +101,12 @@ public class MainActivity extends AppCompatActivity implements PixelClickListene
 
     @Override
     public void itemClicked(Photo photo) {
-        queryViewModel.addToFavorite(photo);
+        Intent intent = new Intent(MainActivity.this, DescriptionActivity.class);
+        intent.putExtra(Constants.PHOTOGRAPHER_NAME, photo.getPhotographer());
+        intent.putExtra(Constants.PHOTOGRAPHER_URL, photo.getPhotographerUrl());
+        intent.putExtra(Constants.PHOTO_ORIGINAL_SRC, photo.getSrc().getOriginal());
+
+        startActivity(intent);
+        queryViewModel.addToRecentPhotos(photo);
     }
 }
