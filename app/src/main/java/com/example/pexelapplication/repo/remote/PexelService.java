@@ -4,7 +4,7 @@ import com.example.pexelapplication.model.PexelResponse;
 
 import java.util.Map;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.QueryMap;
@@ -12,10 +12,12 @@ import retrofit2.http.QueryMap;
 public interface PexelService {
 
 
-
+//    @GET("search")
+//    Call<PexelResponse> getPexel(@Header ("Authorization") String authorization,
+//                                 @QueryMap Map<String, String> queryMap);
 
     @GET("search")
-    Call<PexelResponse> getPexel(@Header ("Authorization") String authorization,
-                                 @QueryMap Map<String, String> queryMap);
+    Observable<PexelResponse> getPexel(@Header ("Authorization") String authorization,
+                                       @QueryMap Map<String, String> queryMap);
 
 }
